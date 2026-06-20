@@ -1,4 +1,4 @@
-# Miklos Lab
+# M Lab
 
 Build apps in the `apps/` folder.
 
@@ -21,9 +21,13 @@ Rules:
 - Use simple static files unless a parent helps connect a service.
 - Optional: add `oblex.json` with `name`, `status`, and `notes` for the Oblex project card.
 
-When an app is ready, commit it so it can be published to Oblex.
+When an app is ready, commit it and push to `main`. The repo will validate your app and trigger Oblex to rebuild.
 
-Before a parent publishes, Oblex checks that each app has `index.html`, valid optional `oblex.json`, and no obvious secret files or tokens.
+Before a parent publishes, Oblex checks that each app has `index.html`, valid optional `oblex.json`, and no obvious secret files or tokens. You can run the same kind of check here first:
+
+```bash
+npm run validate
+```
 
 Example `oblex.json`:
 
@@ -38,7 +42,7 @@ Example `oblex.json`:
 The parent Oblex site publishes stable URLs like:
 
 ```text
-https://oblex.com/kids/miklos/hello-world/
+https://oblex.com/kids/m/hello-world/
 ```
 
 The parent can also open the app shelf at:
@@ -46,3 +50,13 @@ The parent can also open the app shelf at:
 ```text
 https://oblex.com/kids/
 ```
+
+## Publishing
+
+The parent only needs to set this GitHub Actions secret once:
+
+```text
+OBLEX_VERCEL_DEPLOY_HOOK_URL
+```
+
+After that, every push to `main` runs validation and asks Oblex to refresh the public app shelf. You do not need Vercel, DNS, billing, or API keys.
