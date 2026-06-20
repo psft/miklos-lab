@@ -1,0 +1,9 @@
+{
+  "name": "kid-lab",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-apps.mjs"
+  }
+}
