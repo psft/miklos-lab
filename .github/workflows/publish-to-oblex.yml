@@ -1,4 +1,4 @@
-name: Publish to Oblex
+name: Validate Oblex Apps
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  validate-and-publish:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out kid app repo
@@ -24,14 +24,3 @@ jobs:
 
       - name: Validate apps
         run: npm run validate
-
-      - name: Trigger Oblex rebuild
-        env:
-          OBLEX_VERCEL_DEPLOY_HOOK_URL: ${{ secrets.OBLEX_VERCEL_DEPLOY_HOOK_URL }}
-        run: |
-          if [ -z "$OBLEX_VERCEL_DEPLOY_HOOK_URL" ]; then
-            echo "Missing GitHub secret: OBLEX_VERCEL_DEPLOY_HOOK_URL"
-            exit 1
-          fi
-
-          curl --fail --silent --show-error --request POST "$OBLEX_VERCEL_DEPLOY_HOOK_URL"
