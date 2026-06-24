@@ -21,7 +21,7 @@ Rules:
 - Use simple static files unless a parent helps connect a service.
 - Optional: add `oblex.json` with `name`, `status`, and `notes` for the Oblex project card.
 
-When an app is ready, commit it and push to `main`. The repo will validate your app and trigger Oblex to rebuild.
+When an app is ready, commit it and push to `main`. The repo will validate your app. Oblex reads this repo live, so your app can appear on your Oblex shelf without Vercel access.
 
 Before a parent publishes, Oblex checks that each app has `index.html`, valid optional `oblex.json`, and no obvious secret files or tokens. You can run the same kind of check here first:
 
@@ -53,10 +53,6 @@ https://oblex.com/kids/
 
 ## Publishing
 
-The parent only needs to set this GitHub Actions secret once:
+Every push to `main` runs validation. After the push is on GitHub, Oblex reads the repo live and your public app shelf can update within about a minute.
 
-```text
-OBLEX_VERCEL_DEPLOY_HOOK_URL
-```
-
-After that, every push to `main` runs validation and asks Oblex to refresh the public app shelf. You do not need Vercel, DNS, billing, or API keys.
+You do not need Vercel, DNS, billing, deploy hooks, or API keys.
